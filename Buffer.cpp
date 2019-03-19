@@ -21,6 +21,10 @@ void Buffer::clear() noexcept {
     buffer.clear();
 }
 
+void Buffer::write(char * str, long length) noexcept {
+    buffer.insert(buffer.end(), str, str + length);
+}
+
 void Buffer::discard(unsigned long long n) {
     if (buffer.size() < n)
         throw BufferOverflow();
@@ -33,7 +37,7 @@ unsigned long long Buffer::size() const noexcept {
 }
 
 bool Buffer::empty() const noexcept {
-    return buffer.size() == 0;
+    return buffer.empty();
 }
 
 void Buffer::merge(const Buffer &other) noexcept {

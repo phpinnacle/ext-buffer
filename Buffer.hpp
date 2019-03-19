@@ -20,6 +20,7 @@ public:
     Buffer(const std::vector<unsigned char>&) noexcept;
 
     void clear() noexcept;
+    void write(char * str, long length) noexcept;
     void discard(unsigned long long n);
 
     unsigned long long size() const noexcept;
