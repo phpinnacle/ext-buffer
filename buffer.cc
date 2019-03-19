@@ -21,15 +21,6 @@ static zend_class_entry *buffer_object_ce = NULL;
 static zend_class_entry *buffer_exception_ce = NULL;
 static zend_object_handlers buffer_object_handlers;
 
-static void copy_zend_string_to_buffer(zend_string *str, Buffer *data)
-{
-	char *input = ZSTR_VAL(str);
-	zend_long input_len = ZSTR_LEN(str);
-
-    for (int i = 0; i < input_len; i++)
-        data->appendInt8(input[i]);
-}
-
 static zend_object* buffer_object_to_zend_object(buffer_object *objval)
 {
     return ((zend_object*)(objval + 1)) - 1;
@@ -68,7 +59,7 @@ PHP_METHOD(ByteBuffer, __construct)
     }
 
     if (Z_TYPE_P(val) == IS_STRING) {
-        copy_zend_string_to_buffer(Z_STR_P(val), objval->data);
+        objval->data->write(Z_STRVAL_P(val), Z_STRLEN_P(val));
     } else if (Z_TYPE_P(val) == IS_OBJECT && instanceof_function(Z_OBJCE_P(val), buffer_object_ce) != 0) {
         buffer_object *appval = buffer_object_from_zend_object(Z_OBJ_P(val));
 
@@ -127,7 +118,7 @@ PHP_METHOD(ByteBuffer, append)
     }
 
     if (Z_TYPE_P(val) == IS_STRING) {
-        copy_zend_string_to_buffer(Z_STR_P(val), objval->data);
+        objval->data->write(Z_STRVAL_P(val), Z_STRLEN_P(val));
     } else if (Z_TYPE_P(val) == IS_OBJECT && instanceof_function(Z_OBJCE_P(val), buffer_object_ce) != 0) {
         buffer_object *appval = buffer_object_from_zend_object(Z_OBJ_P(val));
 
