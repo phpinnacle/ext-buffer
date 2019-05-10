@@ -13,15 +13,11 @@
 Buffer::Buffer() noexcept {
 }
 
-Buffer::Buffer(const std::vector<unsigned char> &_buffer) noexcept:
-    buffer(_buffer) {
-}
-
 void Buffer::clear() noexcept {
     buffer.clear();
 }
 
-void Buffer::write(char * str, long length) noexcept {
+void Buffer::write(char * str, unsigned long length) noexcept {
     buffer.insert(buffer.end(), str, str + length);
 }
 
@@ -45,13 +41,7 @@ void Buffer::merge(const Buffer &other) noexcept {
 }
 
 std::string Buffer::bytes() const noexcept {
-    std::stringstream stream;
-
-    unsigned long long size = buffer.size();
-    for (unsigned long long i = 0; i < size; ++i)
-        stream << buffer[i];
-
-    return stream.str();
+    return std::string(buffer.begin(), buffer.end());
 }
 
 std::string Buffer::flush() noexcept {

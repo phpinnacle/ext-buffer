@@ -8,8 +8,8 @@
  */
 
 #pragma once
-#include <vector>
-#include <sstream>
+#include <deque>
+#include <string>
 #include <exception>
 
 struct BufferOverflow : public std::exception {};
@@ -17,10 +17,9 @@ struct BufferOverflow : public std::exception {};
 class Buffer {
 public:
     Buffer() noexcept;
-    Buffer(const std::vector<unsigned char>&) noexcept;
 
     void clear() noexcept;
-    void write(char * str, long length) noexcept;
+    void write(char * str, unsigned long length) noexcept;
     void discard(unsigned long long n);
 
     unsigned long long size() const noexcept;
@@ -102,5 +101,5 @@ public:
 
     ~Buffer();
 private:
-    std::vector<unsigned char> buffer;
+    std::deque<unsigned char> buffer;
 };

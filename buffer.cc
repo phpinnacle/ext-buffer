@@ -720,7 +720,7 @@ static zend_function_entry buffer_object_methods[] = {
 };
 
 static zend_object* buffer_object_create(zend_class_entry *ce) {
-    buffer_object *objval = (buffer_object*) ecalloc(1, sizeof(buffer_object) + zend_object_properties_size(ce));
+    buffer_object *objval = (buffer_object*) emalloc(sizeof(buffer_object) + zend_object_properties_size(ce));
 
     zend_object* ret = buffer_object_to_zend_object(objval);
 
