@@ -8,6 +8,7 @@
  */
 
 #include "php_buffer.h"
+#include "arginfo.h"
 #include "Buffer.hpp"
 
 #define GUARD_SIZE(b, s) { if (guard_data_size(b, s) == false) return; }
@@ -663,58 +664,58 @@ PHP_METHOD(ByteBuffer, consumeDouble)
 }
 
 static zend_function_entry buffer_object_methods[] = {
-    PHP_ME(ByteBuffer, __construct, NULL, ZEND_ACC_CTOR | ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, __toString, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, bytes, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, size, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, empty, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, append, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, read, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, consume, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, discard, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, slice, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, shift, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, flush, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, __construct, arginfo_construct, ZEND_ACC_CTOR | ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, __toString, arginfo_empty, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, bytes, arginfo_empty, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, size, arginfo_empty, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, empty, arginfo_empty, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, append, arginfo_string, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, read, arginfo_read, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, consume, arginfo_count, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, discard, arginfo_count, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, slice, arginfo_read, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, shift, arginfo_count, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, flush, arginfo_empty, ZEND_ACC_PUBLIC)
     // BOOL
-    PHP_ME(ByteBuffer, appendBool, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, readBool, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, consumeBool, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, appendBool, arginfo_bool, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, readBool, arginfo_offset, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, consumeBool, arginfo_empty, ZEND_ACC_PUBLIC)
     // INT 8
-    PHP_ME(ByteBuffer, appendInt8, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, readInt8, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, consumeInt8, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, appendUInt8, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, readUInt8, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, consumeUInt8, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, appendInt8, arginfo_int, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, readInt8, arginfo_offset, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, consumeInt8, arginfo_empty, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, appendUInt8, arginfo_int, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, readUInt8, arginfo_offset, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, consumeUInt8, arginfo_empty, ZEND_ACC_PUBLIC)
     // INT 16
-    PHP_ME(ByteBuffer, appendInt16, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, readInt16, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, consumeInt16, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, appendUInt16, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, readUInt16, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, consumeUInt16, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, appendInt16, arginfo_int, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, readInt16, arginfo_offset, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, consumeInt16, arginfo_empty, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, appendUInt16, arginfo_int, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, readUInt16, arginfo_offset, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, consumeUInt16, arginfo_empty, ZEND_ACC_PUBLIC)
     // INT 32
-    PHP_ME(ByteBuffer, appendInt32, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, readInt32, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, consumeInt32, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, appendUInt32, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, readUInt32, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, consumeUInt32, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, appendInt32, arginfo_int, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, readInt32, arginfo_offset, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, consumeInt32, arginfo_empty, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, appendUInt32, arginfo_int, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, readUInt32, arginfo_offset, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, consumeUInt32, arginfo_empty, ZEND_ACC_PUBLIC)
     // INT 64
-    PHP_ME(ByteBuffer, appendInt64, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, readInt64, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, consumeInt64, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, appendUInt64, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, readUInt64, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, consumeUInt64, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, appendInt64, arginfo_int, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, readInt64, arginfo_offset, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, consumeInt64, arginfo_empty, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, appendUInt64, arginfo_int, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, readUInt64, arginfo_offset, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, consumeUInt64, arginfo_empty, ZEND_ACC_PUBLIC)
     // FLOAT
-    PHP_ME(ByteBuffer, appendFloat, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, readFloat, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, consumeFloat, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, appendFloat, arginfo_float, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, readFloat, arginfo_offset, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, consumeFloat, arginfo_empty, ZEND_ACC_PUBLIC)
     // DOUBLE
-    PHP_ME(ByteBuffer, appendDouble, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, readDouble, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(ByteBuffer, consumeDouble, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, appendDouble, arginfo_float, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, readDouble, arginfo_offset, ZEND_ACC_PUBLIC)
+    PHP_ME(ByteBuffer, consumeDouble, arginfo_empty, ZEND_ACC_PUBLIC)
 
     PHP_FE_END
 };
@@ -732,9 +733,10 @@ static zend_object* buffer_object_create(zend_class_entry *ce) {
     return ret;
 }
 
+#if PHP_VERSION_ID < 80000
 static zend_object *buffer_object_clone(zval *object)
 {
-	buffer_object *old_obj = buffer_object_from_zend_object(Z_OBJ_P(object));
+    buffer_object *old_obj = buffer_object_from_zend_object(Z_OBJ_P(object));
 	buffer_object *new_obj = buffer_object_from_zend_object(buffer_object_create(old_obj->std.ce));
 
 	zend_objects_clone_members(&new_obj->std, &old_obj->std);
@@ -744,6 +746,20 @@ static zend_object *buffer_object_clone(zval *object)
 
 	return &new_obj->std;
 }
+#else
+static zend_object *buffer_object_clone(zend_object *object)
+{
+	buffer_object *old_obj = buffer_object_from_zend_object(object);
+	buffer_object *new_obj = buffer_object_from_zend_object(buffer_object_create(old_obj->std.ce));
+
+	zend_objects_clone_members(&new_obj->std, &old_obj->std);
+
+	new_obj->data = new Buffer();
+    new_obj->data->merge(*old_obj->data);
+
+	return &new_obj->std;
+}
+#endif
 
 static void buffer_object_free(zend_object *zobj)
 {
