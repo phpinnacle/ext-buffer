@@ -21,15 +21,14 @@ public:
 
     void clear() noexcept;
     void write(char * str, long length) noexcept;
+    void merge(const Buffer&) noexcept;
     void discard(unsigned long long n);
 
     unsigned long long size() const noexcept;
     bool empty() const noexcept;
 
-    void merge(const Buffer&) noexcept;
-
-    std::string flush() noexcept;
     std::string bytes() const noexcept;
+    std::string flush() noexcept;
 
     /************************** Writing ***************************/
 
@@ -40,16 +39,16 @@ public:
     void appendBoolean(bool) noexcept;
 
     void appendInt8(char) noexcept;
-    void appendUInt8(unsigned char) noexcept;
+    void appendUint8(unsigned char) noexcept;
 
     void appendInt16(short) noexcept;
-    void appendUInt16(unsigned short) noexcept;
+    void appendUint16(unsigned short) noexcept;
 
     void appendInt32(int) noexcept;
-    void appendUInt32(unsigned int) noexcept;
+    void appendUint32(unsigned int) noexcept;
 
     void appendInt64(long long) noexcept;
-    void appendUInt64(unsigned long long) noexcept;
+    void appendUint64(unsigned long long) noexcept;
 
     void appendFloat(float) noexcept;
     void appendDouble(double) noexcept;
@@ -63,16 +62,16 @@ public:
     bool               readBoolean(unsigned long long offset) const;
 
     char               readInt8(unsigned long long offset) const;
-    unsigned char      readUInt8(unsigned long long offset) const;
+    unsigned char      readUint8(unsigned long long offset) const;
 
     short              readInt16(unsigned long long offset) const;
-    unsigned short     readUInt16(unsigned long long offset) const;
+    unsigned short     readUint16(unsigned long long offset) const;
 
     int                readInt32(unsigned long long offset) const;
-    unsigned int       readUInt32(unsigned long long offset) const;
+    unsigned int       readUint32(unsigned long long offset) const;
 
     long long          readInt64(unsigned long long offset) const;
-    unsigned long long readUInt64(unsigned long long offset) const;
+    unsigned long long readUint64(unsigned long long offset) const;
 
     float              readFloat(unsigned long long offset) const;
     double             readDouble(unsigned long long offset) const;
@@ -86,16 +85,16 @@ public:
     bool               consumeBool();
 
     char               consumeInt8();
-    unsigned char      consumeUInt8();
+    unsigned char      consumeUint8();
 
     short              consumeInt16();
-    unsigned short     consumeUInt16();
+    unsigned short     consumeUint16();
 
     int                consumeInt32();
-    unsigned int       consumeUInt32();
+    unsigned int       consumeUint32();
 
     long long          consumeInt64();
-    unsigned long long consumeUInt64();
+    unsigned long long consumeUint64();
 
     float              consumeFloat();
     double             consumeDouble();
