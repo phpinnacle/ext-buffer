@@ -82,40 +82,40 @@ void Buffer::appendString(const std::string &str) noexcept {
 void Buffer::appendInt8(char val) noexcept {
     append<char>(val);
 }
-void Buffer::appendUInt8(unsigned char val) noexcept {
+void Buffer::appendUint8(unsigned char val) noexcept {
     append<unsigned char>(val);
 }
 
 void Buffer::appendInt16(short val) noexcept {
     append<short>(val);
 }
-void Buffer::appendUInt16(unsigned short val) noexcept {
+void Buffer::appendUint16(unsigned short val) noexcept {
     append<unsigned short>(val);
 }
 
 void Buffer::appendInt32(int val) noexcept {
     append<int>(val);
 }
-void Buffer::appendUInt32(unsigned int val) noexcept {
+void Buffer::appendUint32(unsigned int val) noexcept {
     append<unsigned int>(val);
 }
 
 void Buffer::appendInt64(long long val) noexcept {
     append<long long>(val);
 }
-void Buffer::appendUInt64(unsigned long long val) noexcept {
+void Buffer::appendUint64(unsigned long long val) noexcept {
     append<unsigned long long>(val);
 }
 
 void Buffer::appendFloat(float val) noexcept {
     union { float fnum; unsigned long inum; } u;
     u.fnum = val;
-    appendUInt32(u.inum);
+    appendUint32(u.inum);
 }
 void Buffer::appendDouble(double val) noexcept {
     union { double fnum; unsigned long long inum; } u;
     u.fnum = val;
-    appendUInt64(u.inum);
+    appendUint64(u.inum);
 }
 
 /************************* READING *************************/
@@ -151,28 +151,28 @@ std::string Buffer::readString(unsigned long long size, unsigned long long offse
 char Buffer::readInt8(unsigned long long offset) const {
     return read<char>(offset);
 }
-unsigned char Buffer::readUInt8(unsigned long long offset) const {
+unsigned char Buffer::readUint8(unsigned long long offset) const {
     return read<unsigned char>(offset);
 }
 
 short Buffer::readInt16(unsigned long long offset) const {
     return read<short>(offset);
 }
-unsigned short Buffer::readUInt16(unsigned long long offset) const {
+unsigned short Buffer::readUint16(unsigned long long offset) const {
     return read<unsigned short>(offset);
 }
 
 int Buffer::readInt32(unsigned long long offset) const {
     return read<int>(offset);
 }
-unsigned int Buffer::readUInt32(unsigned long long offset) const {
+unsigned int Buffer::readUint32(unsigned long long offset) const {
     return read<unsigned int>(offset);
 }
 
 long long Buffer::readInt64(unsigned long long offset) const {
     return read<long long>(offset);
 }
-unsigned long long Buffer::readUInt64(unsigned long long offset) const {
+unsigned long long Buffer::readUint64(unsigned long long offset) const {
     return read<unsigned long long>(offset);
 }
 
@@ -220,28 +220,28 @@ std::string Buffer::consumeString(unsigned long long size) {
 char Buffer::consumeInt8() {
     return consume<char>();
 }
-unsigned char Buffer::consumeUInt8() {
+unsigned char Buffer::consumeUint8() {
     return consume<unsigned char>();
 }
 
 short Buffer::consumeInt16() {
     return consume<short>();
 }
-unsigned short Buffer::consumeUInt16() {
+unsigned short Buffer::consumeUint16() {
     return consume<unsigned short>();
 }
 
 int Buffer::consumeInt32() {
     return consume<int>();
 }
-unsigned int Buffer::consumeUInt32() {
+unsigned int Buffer::consumeUint32() {
     return consume<unsigned int>();
 }
 
 long long Buffer::consumeInt64() {
     return consume<long long>();
 }
-unsigned long long Buffer::consumeUInt64() {
+unsigned long long Buffer::consumeUint64() {
     return consume<unsigned long long>();
 }
 
