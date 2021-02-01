@@ -189,6 +189,8 @@ PHP_METHOD(ByteBuffer, discard)
     GUARD_SIZE(objval, size);
 
     objval->data->discard(size);
+
+    RETURN_ZVAL(getThis(), 1, 0);
 }
 
 PHP_METHOD(ByteBuffer, slice)
